@@ -7,7 +7,7 @@ from knight.data_model import ChessCoordinate, Statement
 def test_parse_coordinate():
     for letter in string.ascii_lowercase[:8] + string.ascii_uppercase[:8]:
         for number in range(1, 9):
-            v = parse_coordinate(f"{letter}{number}") == ChessCoordinate(letter=letter, number=number)
+            assert parse_coordinate(f"{letter}{number}") == ChessCoordinate(letter=letter.upper(), number=number)
     with pytest.raises(ValueError):
         parse_coordinate("I1")
     with pytest.raises(ValueError):
