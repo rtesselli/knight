@@ -37,7 +37,6 @@ setup(
     url='',  # TODO
     author='Riccardo Tesselli',
     author_email='riccardo.tesselli@gmail.com',
-    package_dir={'': 'knight'},
     packages=find_packages(where='knight'),
     python_requires='>=3.9',
     install_requires=read_requirements('requirements.txt'),
