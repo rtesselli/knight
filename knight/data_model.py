@@ -14,7 +14,7 @@ class ChessCoordinate(BaseModel):
     def valid_letter(cls, letter: Text) -> Text:
         if letter.upper() not in string.ascii_uppercase:
             raise ValueError(f"Letter {letter} is not valid")
-        return letter
+        return letter.upper()
 
     @validator("number")
     def valid_number(cls, number: Union[Text, int]) -> int:
