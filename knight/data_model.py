@@ -12,7 +12,7 @@ class ChessCoordinate(BaseModel):
 
     @validator("letter")
     def valid_letter(cls, letter: Text) -> Text:
-        if letter.upper() not in string.ascii_uppercase[:8]:
+        if letter.upper() not in string.ascii_uppercase:
             raise ValueError(f"Letter {letter} is not valid")
         return letter
 
@@ -32,5 +32,5 @@ class Statement(BaseModel):
     end: ChessCoordinate
 
 
-# Generic type
+# Generic type, needed to define generic functions/classes
 T = TypeVar('T')
