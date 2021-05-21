@@ -1,5 +1,5 @@
-from knight import data_model
 import sys
+from knight import data_model
 from typing import Iterable, Text
 
 
