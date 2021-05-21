@@ -20,3 +20,4 @@ def test_breadth_first_search():
     assert list(breadth_first_search('a', 'b', example_neighbors)) == ['a', 'b']
     assert list(breadth_first_search('a', 'h', example_neighbors)) == ['a', 'c', 'h']
     assert list(breadth_first_search('c', 'b', example_neighbors)) == ['c', 'a', 'b']
+    assert list(breadth_first_search('a', 'r', example_neighbors)) == []
