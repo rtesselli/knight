@@ -11,7 +11,7 @@ def test_parse_coordinate():
     with pytest.raises(ValueError):
         parse_coordinate("I1")
     with pytest.raises(ValueError):
-        parse_coordinate("A9")
+        parse_coordinate("A0")
     with pytest.raises(ValueError):
         parse_coordinate("ABC")
     with pytest.raises(ValueError):

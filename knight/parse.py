@@ -1,5 +1,4 @@
 from knight import data_model
-import string
 import sys
 from typing import Iterable, Text
 
@@ -8,11 +7,6 @@ def parse_coordinate(element: Text) -> data_model.ChessCoordinate:
     if len(element) != 2:
         raise ValueError(f"Element {element} is not 2-char long")
     letter, number = element
-    number = int(number)
-    letter_check = letter.upper() in string.ascii_uppercase[:8]
-    number_check = number in set(range(1, 9))
-    if not (letter_check and number_check):
-        raise ValueError(f"Element {element} is ill-formed")
     return data_model.ChessCoordinate(letter=letter.upper(), number=number)
 
 
