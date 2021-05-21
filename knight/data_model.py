@@ -1,11 +1,17 @@
 import string
 from pydantic import BaseModel, validator
-from typing import Text, Union, TypeVar
+from typing import Text, Union, TypeVar, NamedTuple
 
 
-class ChessCoordinate(BaseModel):
+class HashableModel(BaseModel):
+    def __hash__(self):  # make hashable BaseModel subclass
+        return hash((type(self),) + tuple(self.__dict__.values()))
+
+
+class ChessCoordinate(HashableModel):
     """
     A chess coordinate, e.g. C2.
+    Pydantic BaseClass is not hashable, BFS requires hashable objects
     """
     letter: Text
     number: int
@@ -34,3 +40,8 @@ class Statement(BaseModel):
 
 # Generic type, needed to define generic functions/classes
 T = TypeVar('T')
+
+
+class Pair(NamedTuple):
+    a: T
+    b: T
