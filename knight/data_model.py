@@ -1,9 +1,12 @@
 import string
 from pydantic import BaseModel, validator
-from typing import Text, Union
+from typing import Text, Union, TypeVar
 
 
 class ChessCoordinate(BaseModel):
+    """
+    A chess coordinate, e.g. C2.
+    """
     letter: Text
     number: int
 
@@ -22,5 +25,12 @@ class ChessCoordinate(BaseModel):
 
 
 class Statement(BaseModel):
+    """
+    Problem statement, e.g. D4 G7
+    """
     start: ChessCoordinate
     end: ChessCoordinate
+
+
+# Generic type
+T = TypeVar('T')
