@@ -18,9 +18,14 @@ def test_solve_statement():
             )
         )
     )
-    expected = [
+    expected1 = [
         ChessCoordinate(letter='D', number=4),
         ChessCoordinate(letter='F', number=5),
         ChessCoordinate(letter='G', number=7),
     ]
-    assert result == expected
+    expected2 = [
+        ChessCoordinate(letter='D', number=4),
+        ChessCoordinate(letter='E', number=6),
+        ChessCoordinate(letter='G', number=7),
+    ]
+    assert result == expected1 or result == expected2
