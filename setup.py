@@ -34,7 +34,7 @@ setup(
     description='Knight shortest path',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='',  # TODO
+    url='https://github.com/rtesselli/knight',
     author='Riccardo Tesselli',
     author_email='riccardo.tesselli@gmail.com',
     packages=find_packages(include=['knight', 'knight.*']),
