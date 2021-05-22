@@ -53,6 +53,7 @@ D4 E2 F4 D5
   - Please provide us with access to git repo with code when you're done.
 
 ## Setup
+### With virtual environment
 Create an environment with Python3.9 (e.g. with `conda create -n knight python=3.9 -y && conda activate knight`).
 
 Go to the project root folder and run
@@ -68,6 +69,13 @@ pip install -e .[test]
 ```
 
 Notice that if you are using zsh you need to escape square brackets with a backslash.
+
+### With Docker
+Go to the project root folder and run
+
+```
+docker build -f knight.dockerfile -t knight . && docker run --rm -it knight
+``` 
 
 ## Run
 The program reads the input from stdin, for example you can do:
