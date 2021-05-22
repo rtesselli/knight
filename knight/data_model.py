@@ -29,6 +29,9 @@ class ChessCoordinate(HashableModel):
             raise ValueError(f"Number {number} is not valid")
         return number
 
+    def __str__(self):
+        return f"{self.letter}{self.number}"
+
 
 class Statement(BaseModel):
     """
