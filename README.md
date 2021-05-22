@@ -1,3 +1,5 @@
+![CI](https://github.com/rtesselli/knight/actions/workflows/main.yml/badge.svg)
+
 # Knight problem
 ## Definition
 
@@ -125,3 +127,6 @@ sufficient to define the custom neighbors functions.
 ### Output
 I've decided to decouple the presentation layer from the logic, so in the future it is easy to change a new output
 function (which does not necessarily print in stdout).
+
+### CI
+I've add a GitHub action to run tests on push and PR.
