@@ -5,7 +5,7 @@ from knight.data_model import T
 
 def breadth_first_search(start: Generic[T], key: Generic[T],
                          neighbors: Callable[[T], Iterable[T]]) -> Iterable[T]:
-    def backtrace(node: Generic[T]) -> Iterable[T]:
+    def backtrace() -> Iterable[T]:
         parent = parents.get(node, None)
         trace = []
         while parent:
@@ -19,7 +19,7 @@ def breadth_first_search(start: Generic[T], key: Generic[T],
     while to_do:
         node = to_do.popleft()
         if node == key:
-            return backtrace(node)
+            return backtrace()
         for neighbor in neighbors(node):
             if neighbor not in visited:
                 visited.add(neighbor)
