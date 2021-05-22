@@ -4,14 +4,17 @@ from typing import Text, Union, TypeVar, NamedTuple
 
 
 class HashableModel(BaseModel):
-    def __hash__(self):  # make hashable BaseModel subclass
+    """
+    This custom class is needed to make pydantic.BaseModel hashable
+    """
+    def __hash__(self):
         return hash((type(self),) + tuple(self.__dict__.values()))
 
 
 class ChessCoordinate(HashableModel):
     """
     A chess coordinate, e.g. C2.
-    Pydantic BaseClass is not hashable, BFS requires hashable objects
+    Pydantic BaseClass is not hashable, we need hashing to use this class with sets
     """
     letter: Text
     number: int
@@ -46,5 +49,8 @@ T = TypeVar('T')
 
 
 class Pair(NamedTuple):
+    """
+    A generic pair of values of same type
+    """
     a: T
     b: T

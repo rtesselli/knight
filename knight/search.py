@@ -5,7 +5,19 @@ from knight.data_model import T
 
 def breadth_first_search(start: Generic[T], key: Generic[T],
                          neighbors: Callable[[T], Iterable[T]]) -> Iterable[T]:
+    """
+    This function implements the BFS algorithm
+    :param start: Starting node
+    :param key: Destination node
+    :param neighbors: Function which returns the neighbors of a node
+    :return: Path from starting node to destination node, if exists, else empty path
+    """
+
     def backtrace() -> Iterable[T]:
+        """
+        This function backtrace the parent line from destination up to starting node
+        :return:
+        """
         parent = parents.get(node, None)
         trace = []
         while parent:
