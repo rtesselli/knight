@@ -3,6 +3,9 @@ from knight.data_model import Statement, ChessCoordinate, Pair
 
 
 class TestChessBoard:
+    def __init__(self):
+        self.board = ChessBoard(size=8)
+
     def test_knight_moves(self):
         assert type(ChessBoard.KNIGHT_MOVES) == tuple
         assert len(ChessBoard.KNIGHT_MOVES) == 8
@@ -10,25 +13,45 @@ class TestChessBoard:
         assert all(abs(x) in {1, 2} and abs(y) in {1, 2} for x, y in ChessBoard.KNIGHT_MOVES)
 
     def test_move_from(self):
-        board = ChessBoard(size=8)
-        assert board.move_from(ChessCoordinate(letter='A', number=1), Pair(-1, 0)) is None
-        assert board.move_from(ChessCoordinate(letter='A', number=1), Pair(0, -1)) is None
-        assert board.move_from(ChessCoordinate(letter='A', number=1), Pair(-1, -1)) is None
+        assert self.board.move_from(ChessCoordinate(letter='A', number=1), Pair(-1, 0)) is None
+        assert self.board.move_from(ChessCoordinate(letter='A', number=1), Pair(0, -1)) is None
+        assert self.board.move_from(ChessCoordinate(letter='A', number=1), Pair(-1, -1)) is None
 
-        assert board.move_from(ChessCoordinate(letter='A', number=8), Pair(-1, 0)) is None
-        assert board.move_from(ChessCoordinate(letter='A', number=8), Pair(0, 1)) is None
-        assert board.move_from(ChessCoordinate(letter='A', number=8), Pair(-1, 1)) is None
+        assert self.board.move_from(ChessCoordinate(letter='A', number=8), Pair(-1, 0)) is None
+        assert self.board.move_from(ChessCoordinate(letter='A', number=8), Pair(0, 1)) is None
+        assert self.board.move_from(ChessCoordinate(letter='A', number=8), Pair(-1, 1)) is None
 
-        assert board.move_from(ChessCoordinate(letter='H', number=8), Pair(1, 0)) is None
-        assert board.move_from(ChessCoordinate(letter='H', number=8), Pair(0, 1)) is None
-        assert board.move_from(ChessCoordinate(letter='H', number=8), Pair(1, 1)) is None
+        assert self.board.move_from(ChessCoordinate(letter='H', number=8), Pair(1, 0)) is None
+        assert self.board.move_from(ChessCoordinate(letter='H', number=8), Pair(0, 1)) is None
+        assert self.board.move_from(ChessCoordinate(letter='H', number=8), Pair(1, 1)) is None
 
-        assert board.move_from(ChessCoordinate(letter='H', number=1), Pair(1, 0)) is None
-        assert board.move_from(ChessCoordinate(letter='H', number=1), Pair(0, -1)) is None
-        assert board.move_from(ChessCoordinate(letter='H', number=1), Pair(1, -1)) is None
+        assert self.board.move_from(ChessCoordinate(letter='H', number=1), Pair(1, 0)) is None
+        assert self.board.move_from(ChessCoordinate(letter='H', number=1), Pair(0, -1)) is None
+        assert self.board.move_from(ChessCoordinate(letter='H', number=1), Pair(1, -1)) is None
 
-        assert board.move_from(
+        assert self.board.move_from(
             ChessCoordinate(letter='B', number=1), Pair(1, 1)) == ChessCoordinate(letter='C', number=2)
+
+    def test_knight_neighbors(self):
+        result = set(self.board.knight_neighbors(ChessCoordinate(letter='C', number=3)))
+        expected = {
+            ChessCoordinate(letter='B', number=5),
+            ChessCoordinate(letter='D', number=5),
+            ChessCoordinate(letter='B', number=1),
+            ChessCoordinate(letter='D', number=1),
+            ChessCoordinate(letter='A', number=4),
+            ChessCoordinate(letter='E', number=4),
+            ChessCoordinate(letter='A', number=2),
+            ChessCoordinate(letter='E', number=2)
+        }
+        assert result == expected
+
+        result = set(self.board.knight_neighbors(ChessCoordinate(letter='A', number=1)))
+        expected = {
+            ChessCoordinate(letter='B', number=3),
+            ChessCoordinate(letter='C', number=2),
+        }
+        assert result == expected
 
 
 class TestSolver:
