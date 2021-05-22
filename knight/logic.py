@@ -2,12 +2,11 @@ from knight import data_model
 from typing import Iterable, Optional
 from knight.search import breadth_first_search
 from itertools import product
-from functools import partial
-
-KNIGHT_MOVES = tuple(product((1, -1), (2, -2))) + tuple(product((2, -2), (1, -1)))
 
 
 class ChessBoard:
+    KNIGHT_MOVES = tuple(product((1, -1), (2, -2))) + tuple(product((2, -2), (1, -1)))
+
     def __init__(self, size=8):
         self.size = size
 
@@ -21,24 +20,25 @@ class ChessBoard:
             return data_model.ChessCoordinate(letter=chr(new_x + 64), number=new_y)
         return None
 
-
-def knight_neighbors(cell: data_model.ChessCoordinate, board: ChessBoard) -> Iterable[data_model.ChessCoordinate]:
-    return (
-        new_coordinate
-        for move in KNIGHT_MOVES
-        if (new_coordinate := board.move_from(cell, move))
-    )
-
-
-def solve_statement(statement: data_model.Statement) -> Iterable[data_model.ChessCoordinate]:
-    start = statement.start
-    end = statement.end
-    neighbors = partial(knight_neighbors, board=ChessBoard(size=8))
-    return breadth_first_search(start, end, neighbors)
+    def knight_neighbors(self, cell: data_model.ChessCoordinate) -> Iterable[data_model.ChessCoordinate]:
+        return (
+            new_coordinate
+            for move in ChessBoard.KNIGHT_MOVES
+            if (new_coordinate := self.move_from(cell, move))
+        )
 
 
-def solve(statements: Iterable[data_model.Statement]) -> Iterable[Iterable[data_model.ChessCoordinate]]:
-    return (
-        solve_statement(statement)
-        for statement in statements
-    )
+class Solver:
+    def __init__(self, board: ChessBoard):
+        self.board = board
+
+    def solve_statement(self, statement: data_model.Statement) -> Iterable[data_model.ChessCoordinate]:
+        start = statement.start
+        end = statement.end
+        return breadth_first_search(start, end, self.board.knight_neighbors)
+
+    def solve(self, statements: Iterable[data_model.Statement]) -> Iterable[Iterable[data_model.ChessCoordinate]]:
+        return (
+            self.solve_statement(statement)
+            for statement in statements
+        )
