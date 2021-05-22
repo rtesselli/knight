@@ -77,4 +77,38 @@ class TestSolver:
             ChessCoordinate(letter='E', number=6),
             ChessCoordinate(letter='G', number=7),
         ]
-        assert result == expected1 or result == expected2
+        assert result in {expected1, expected2}
+
+        result = list(
+            self.solver.solve_statement(
+                Statement(
+                    start=ChessCoordinate(letter='D', number=4),
+                    end=ChessCoordinate(letter='D', number=5),
+                )
+            )
+        )
+        expected1 = [
+            ChessCoordinate(letter='D', number=4),
+            ChessCoordinate(letter='E', number=2),
+            ChessCoordinate(letter='F', number=4),
+            ChessCoordinate(letter='D', number=5)
+        ]
+        expected2 = [
+            ChessCoordinate(letter='D', number=4),
+            ChessCoordinate(letter='C', number=2),
+            ChessCoordinate(letter='B', number=4),
+            ChessCoordinate(letter='D', number=5)
+        ]
+        expected3 = [
+            ChessCoordinate(letter='D', number=4),
+            ChessCoordinate(letter='C', number=6),
+            ChessCoordinate(letter='B', number=4),
+            ChessCoordinate(letter='D', number=5)
+        ]
+        expected4 = [
+            ChessCoordinate(letter='D', number=4),
+            ChessCoordinate(letter='E', number=6),
+            ChessCoordinate(letter='F', number=4),
+            ChessCoordinate(letter='D', number=5)
+        ]
+        assert result in {expected1, expected2, expected3, expected4}
