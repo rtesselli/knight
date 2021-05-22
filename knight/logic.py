@@ -23,10 +23,11 @@ class ChessBoard:
 
 
 def knight_neighbors(cell: data_model.ChessCoordinate, board: ChessBoard) -> Iterable[data_model.ChessCoordinate]:
-    return set(
-        board.move_from(cell, move)
+    return (
+        new_coordinate
         for move in KNIGHT_MOVES
-    ) - {None}
+        if (new_coordinate := board.move_from(cell, move))
+    )
 
 
 def solve_statement(statement: data_model.Statement) -> Iterable[data_model.ChessCoordinate]:
