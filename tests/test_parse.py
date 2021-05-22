@@ -28,9 +28,8 @@ def test_parse_line():
         parse_line("A1 A1 A1")
 
 
-def test_parse_input(monkeypatch):
-    monkeypatch.setattr('sys.stdin.readlines', lambda: ["A1 B1", "C2  D4"])
-    assert list(parse_input()) == [
+def test_parse_input():
+    assert list(parse_input(["A1 B1", "C2  D4"])) == [
         Statement(
             start=ChessCoordinate(letter='A', number=1),
             end=ChessCoordinate(letter='B', number=1)

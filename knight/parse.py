@@ -1,4 +1,3 @@
-import sys
 from knight import data_model
 from typing import Iterable, Text
 
@@ -27,9 +26,9 @@ def parse_line(line: Text) -> data_model.Statement:
     return data_model.Statement(start=parse_coordinate(elements[0]), end=parse_coordinate(elements[1]))
 
 
-def parse_input() -> Iterable[data_model.Statement]:
+def parse_input(reader: Iterable[Text]) -> Iterable[data_model.Statement]:
     """
     Reads from stdin and parse each line
     :return: Iterable of problem statements
     """
-    return (parse_line(line) for line in sys.stdin.readlines())
+    return (parse_line(line) for line in reader)
