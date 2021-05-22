@@ -9,6 +9,6 @@ def main():
     output_solutions(results)
 
 
-# echo "Input to my program" | python main.py
+# call with: echo "B2 E3" | python main.py
 if __name__ == '__main__':
     main()
